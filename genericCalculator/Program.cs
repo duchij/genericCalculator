@@ -3,15 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 using System.Text.RegularExpressions; 
 
 namespace genericCalculator
 {
-    class Program
+    class Program : ApplicationContext
     {
         static void Main(string[] args)
         {
+
+            MainCalc mc = new MainCalc();
+            Application.Run(mc);
+
 
             //cele to mozeme dat do nejakeho cyklu a pod
             //btw dalo by sa to napisat kompletne cez regularne vyrazy t.j. rovno napiseme a+b
