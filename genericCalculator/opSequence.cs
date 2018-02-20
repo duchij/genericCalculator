@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using System.Text.RegularExpressions;
 
 namespace genericCalculator
 {
@@ -11,30 +12,46 @@ namespace genericCalculator
     {
         private string[] sequence = new string[3];
 
-        private int index = 0;
 
         private bool isFloat = false;
 
         public bool Add(string txt)
         {
+            string[] tmp = Regex.Split(txt, @"\r\n");
 
-            if (index == sequence.Length - 1)
+            if (tmp.Length < 2)
             {
-                return true;
+                return false;
             }
-            
 
-            using (StreamReader sr = new StreamReader(txt))
+
+            if (tmp[2].Trim().Length == 0)
             {
-                string line = sr.ReadLine();
-                while (line != null)
+               // this.index = 0;
+                return false;
+            }
+
+            for (int i = 0; i < 3; i++)
+            {
+                if (i != 1)
                 {
-                    sequence[index] = line;
-                    index++;
+                    if (tmp[i].IndexOf(',')!=-1)
+                    {
+                        this.isFloat = true;
+                    }
                 }
+                else
+                {
+                    if (tmp[1] == "/")
+                    {
+                        this.isFloat = true;
+                    }
+                }
+
+                this.sequence[i] = tmp[i];
             }
 
-            return false;
+            return true;
 
         }
 

@@ -6,14 +6,30 @@ using System.Threading.Tasks;
 
 namespace genericCalculator
 {
-    //definujeme si co pre int a float
-    class calcInt : genericCalc<int>
+    //definujeme si co pre int a float, nedalo mi to skusil som si Singleton a ma to svoju logiku
+    //pamat fakt tak nenarasta...
+    //rozvijame nasu abstraktnu genericku triedu, ktora sa da rozsirovat o matiku ako chceme.....
+    public sealed class calcInt : genericCalc<int>
     {
 
-        public calcInt()
+        private static readonly calcInt calc = new calcInt();
+
+        //private calcIntS() { }
+        private calcInt()
         {
 
         }
+
+        public static calcInt Calc
+        {
+            get
+            {
+                return calc;
+            }
+        }
+
+
+
         public override void add(int a, int b, out string res)
         {
             res = (a + b).ToString();
@@ -39,7 +55,22 @@ namespace genericCalculator
 
     class calcFloat : genericCalc<float>
     {
-        public calcFloat()
+
+        private static readonly calcFloat calc = new calcFloat();
+
+        //private calcIntS() { }
+       
+
+        public static calcFloat Calc
+        {
+            get
+            {
+                return calc;
+            }
+        }
+
+
+        private calcFloat()
         {
 
         }

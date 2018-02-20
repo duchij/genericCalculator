@@ -45,16 +45,18 @@
             this.btn_opSub = new System.Windows.Forms.Button();
             this.btn_opDiv = new System.Windows.Forms.Button();
             this.btn_opMul = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btn_opRun = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // txt_calcViewer
             // 
-            this.txt_calcViewer.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.txt_calcViewer.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.txt_calcViewer.Location = new System.Drawing.Point(12, 12);
+            this.txt_calcViewer.MaxLength = 100;
             this.txt_calcViewer.Multiline = true;
             this.txt_calcViewer.Name = "txt_calcViewer";
             this.txt_calcViewer.ReadOnly = true;
+            this.txt_calcViewer.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.txt_calcViewer.Size = new System.Drawing.Size(241, 71);
             this.txt_calcViewer.TabIndex = 0;
             this.txt_calcViewer.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -236,23 +238,23 @@
             this.btn_opMul.UseVisualStyleBackColor = true;
             this.btn_opMul.Click += new System.EventHandler(this.buttonClickEvent);
             // 
-            // button1
+            // btn_opRun
             // 
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button1.Location = new System.Drawing.Point(205, 242);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(42, 45);
-            this.button1.TabIndex = 17;
-            this.button1.Text = "=";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.buttonClickEvent);
+            this.btn_opRun.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.btn_opRun.Location = new System.Drawing.Point(205, 242);
+            this.btn_opRun.Name = "btn_opRun";
+            this.btn_opRun.Size = new System.Drawing.Size(42, 45);
+            this.btn_opRun.TabIndex = 17;
+            this.btn_opRun.Text = "=";
+            this.btn_opRun.UseVisualStyleBackColor = true;
+            this.btn_opRun.Click += new System.EventHandler(this.buttonClickEvent);
             // 
             // MainCalc
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(265, 295);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btn_opRun);
             this.Controls.Add(this.btn_opMul);
             this.Controls.Add(this.btn_opDiv);
             this.Controls.Add(this.btn_opSub);
@@ -296,6 +298,6 @@
         private System.Windows.Forms.Button btn_opSub;
         private System.Windows.Forms.Button btn_opDiv;
         private System.Windows.Forms.Button btn_opMul;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btn_opRun;
     }
 }

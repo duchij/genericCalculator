@@ -31,6 +31,9 @@ namespace genericCalculator
             this.opSequence = new string[3];
             this.calculate = false;
 
+            //no vzdy budeme spocitatavat len dve cisla a nasledne vysledok spocitam s dalsim, 
+            //do buducna mozem tieto operacie zretazovat a vytvarat kombinacie
+            //t.c. tak jednoducho po dve
             this.calcSequece = new genericCalculator.opSequence();
         }
 
@@ -41,37 +44,52 @@ namespace genericCalculator
 
         private void buttonClickEvent(object sender, EventArgs e)
         {
-            Button Btn = (Button)sender;
+            //cast objektu 
+            Button Btn = sender as Button;
+            //checkneme ci naozaj bol stlaceny button
+            if (Btn == null)
+            {
+                throw new Exception("Invalid button....");
+            }
             string type = Btn.Name;
 
-            
-
+            //parsujeme - ak bol stlaceny operator tak ideme
             if (type.IndexOf("btn_op") != -1)
             {
-
-                //this.calculate = this.calcSequece.Add(this.txt_calcViewer.Text);
-
-                string[] opType = type.Split('_');
-                this.txt_calcViewer.Text += Environment.NewLine;
-                switch (opType[1])
+                //ak nie je ziadne cislo tak smola
+                if (this.txt_calcViewer.Text.Trim().Length > 0)
                 {
-                    case "opAdd":
-                        this.txt_calcViewer.Text += "+";
-                        break;
-                    case "opSub":
-                        this.txt_calcViewer.Text += "-";
-                        break;
-                    case "opDiv":
-                        this.txt_calcViewer.Text += "/";
-                        break;
-                    case "opMul":
-                        this.txt_calcViewer.Text += "/";
-                        break;
+                    string[] opType = type.Split('_');
+
+                    if (opType[1] != "opRun")
+                    {
+                        this.txt_calcViewer.Text += Environment.NewLine;
+                    }
+
+                    switch (opType[1])
+                    {
+                        case "opAdd":
+                            this.txt_calcViewer.Text += "+";
+                            break;
+                        case "opSub":
+                            this.txt_calcViewer.Text += "-";
+                            break;
+                        case "opDiv":
+                            this.txt_calcViewer.Text += "/";
+                            break;
+                        case "opMul":
+                            this.txt_calcViewer.Text += "*";
+                            break;
+
+                    }
+
+                    if (opType[1] != "opRun")
+                    {
+                        this.txt_calcViewer.Text += Environment.NewLine;
+                    }
+
+                    this.calculate = this.calcSequece.Add(this.txt_calcViewer.Text);
                 }
-                this.txt_calcViewer.Text += Environment.NewLine;
-
-                this.calculate = this.calcSequece.Add(this.txt_calcViewer.Text);
-
             }
             else if (type == "btn_clear")
             {
@@ -82,11 +100,12 @@ namespace genericCalculator
             {
                 if (!this.setDecimal)
                 {
-                    this.txt_calcViewer.Text += ".";
+                    this.txt_calcViewer.Text += ",";
                     this.setDecimal = true;
                 }
                 
             }
+           
             else
             {
                 string[] tmp = type.Split('_');
@@ -96,11 +115,12 @@ namespace genericCalculator
 
             if (this.calculate)
             {
-                //MessageBox.Show("hura");
 
                 bool isFloat = false;
 
                 string[] seq = this.calcSequece.getSequence(out isFloat);
+
+                //inak operacia ak je float a inak kde je int
 
                 if (isFloat)
                 {
@@ -110,9 +130,6 @@ namespace genericCalculator
                 {
                     this.txt_calcViewer.Text = calcInit.calcOperator(seq[0], seq[2], seq[1], "int");
                 }
-
-
-
             }
 
         }

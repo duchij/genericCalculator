@@ -9,10 +9,10 @@ using System.Globalization;
 namespace genericCalculator
 {
 
-    //malinkato factory method.....aspon dufam, da sa to aj brutalne elegantnejsie ale musim sa este ucit
+    //vytvorime staticku triedu a nasledne dla stavu co potrebujeme....
+
     public static class calcInit
     {
-
         static calcInit()
         {
 
@@ -25,21 +25,17 @@ namespace genericCalculator
             switch (type)
             {
                 case "int":
-                    calcInt ci = new calcInt();
 
                     int aI = int.Parse(a);
                     int bI = int.Parse(b);
 
-                    if (optr == "+") { ci.add(aI, bI, out res);  }
-                    if (optr == "-") { ci.sub(aI, bI, out res); }
-                    if (optr == "/") { ci.div(aI, bI, out res); }
-                    if (optr == "*") { ci.multi(aI, bI, out res); }
+                    if (optr == "+") { calcInt.Calc.add(aI, bI, out res);  }
+                    if (optr == "-") { calcInt.Calc.sub(aI, bI, out res); }
+                    if (optr == "/") { calcInt.Calc.div(aI, bI, out res); }
+                    if (optr == "*") { calcInt.Calc.multi(aI, bI, out res); }
                     break;
                 case "float":
 
-                    
-
-                    calcFloat cf = new calcFloat();
                     bool st = true;
 
                     float aF;
@@ -53,10 +49,10 @@ namespace genericCalculator
                         throw new Exception("Nesparavny format musi byt");
                     }
 
-                    if (optr == "+") { cf.add(aF, bF, out res); }
-                    if (optr == "-") { cf.sub(aF, bF, out res); }
-                    if (optr == "/") { cf.div(aF, bF, out res); }
-                    if (optr == "*") { cf.multi(aF, bF, out res); }
+                    if (optr == "+") { calcFloat.Calc.add(aF, bF, out res); }
+                    if (optr == "-") { calcFloat.Calc.sub(aF, bF, out res); }
+                    if (optr == "/") { calcFloat.Calc.div(aF, bF, out res); }
+                    if (optr == "*") { calcFloat.Calc.multi(aF, bF, out res); }
                     break;
 
             }
